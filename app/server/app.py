@@ -1,9 +1,15 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
+from fastapi.staticfiles import StaticFiles
+
+from fastapi.templating import Jinja2Templates
 
 from app.server.routes.user import router as UserRouter
 from app.server.routes.diary import router as DiaryRouter
 
 app = FastAPI()
+
+templates = Jinja2Templates(directory="templates")
+
 
 app.include_router(UserRouter, tags=["User"], prefix="/user" )
 app.include_router(DiaryRouter, tags=["Diary"], prefix="/diary" )
@@ -13,7 +19,7 @@ app.include_router(DiaryRouter, tags=["Diary"], prefix="/diary" )
 async def read_root():
     return {"message": "Welcome to Nutri Diary"}
 
-@app.get("/.well-known/acme-challenge/qEKih7qVga3bTnfBdsekEUJFWykfvdK_Os5BeDsb0b4")
-async def read_cert_file():
-    return "qEKih7qVga3bTnfBdsekEUJFWykfvdK_Os5BeDsb0b4.tt1YMtJf3FWnozhjY1DTPVIL1i7YUhUuz4ue6FUbgsk"
 
+@app.get("/.well-known/acme-challenge/i8bAW8juwarmmEDjwmPVqyoRSTt2mVm6XHw1L70OLdA")
+async def serve_home(request: Request):
+    return templates.TemplateResponse("certfile.html", {"request": request})
