@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Body
 from fastapi.encoders import jsonable_encoder
 
-from app.server.db.database import (
+from app.server.db.user import (
     get_user,
     retrieve_users,
     add_user,
