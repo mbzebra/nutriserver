@@ -13,7 +13,7 @@ app.include_router(DiaryRouter, tags=["Diary"], prefix="/diary" )
 async def read_root():
     return {"message": "Welcome to Nutri Diary"}
 
-@app.get("/.well-known/acme-challenge/06UuuU9jzNVZ1uR-CAy148QVbtgVXiUh2M1PWgxL5TI")
+@app.get("/.well-known/acme-challenge/qEKih7qVga3bTnfBdsekEUJFWykfvdK_Os5BeDsb0b4")
 async def read_cert_file():
-    return "06UuuU9jzNVZ1uR-CAy148QVbtgVXiUh2M1PWgxL5TI.tt1YMtJf3FWnozhjY1DTPVIL1i7YUhUuz4ue6FUbgsk"
+    return "qEKih7qVga3bTnfBdsekEUJFWykfvdK_Os5BeDsb0b4.tt1YMtJf3FWnozhjY1DTPVIL1i7YUhUuz4ue6FUbgsk"
 
