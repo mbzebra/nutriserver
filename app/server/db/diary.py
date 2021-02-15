@@ -5,8 +5,8 @@ from app.server.db.database import diary_collection
 def diary_helper(diary) -> dict:
     return {
         "id": str(diary["_id"]),
-        "name": diary["fullname"],
-        "diaryid": diary["diaryid"],
+        "name": diary["name"],
+        "diaryid": diary["userid"],
     }
 
 
