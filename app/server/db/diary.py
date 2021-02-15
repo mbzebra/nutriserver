@@ -6,7 +6,7 @@ def diary_helper(diary) -> dict:
     return {
         "id": str(diary["_id"]),
         "name": diary["name"],
-        "diaryid": diary["userid"],
+        "userid": diary["userid"]
     }
 
 
