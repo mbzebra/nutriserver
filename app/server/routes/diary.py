@@ -3,7 +3,7 @@ from fastapi.encoders import jsonable_encoder
 
 from app.server.db.diary import (
     get_diary,
-    retrieve_diarys,
+    retrieve_diaries,
     add_diary,
     delete_diary,
     update_diary
@@ -20,17 +20,26 @@ router = APIRouter()
 
 @router.post("/", response_description="Diary Data Added to the Database")
 async def add_diary_data(diary: DiarySchema = Body(...)):
+    print('Inside post', diary)
     diary = jsonable_encoder(diary)
     new_diary = await add_diary(diary)
     return ResponseModel(new_diary, "Diary Added Successfully")
 
 
+# @router.post("/", response_description="Diary Data Added to the Database")
+# async def add_diary_data(diary: DiarySchema = Body(...)):
+#     print('Inside post')
+#     diary = jsonable_encoder(diary)
+#     new_diary = await add_diary(diary)
+#     return ResponseModel(new_diary, "Diary Added Successfully")
+#
+
 @router.get("/", response_description="Diary Data retrieved")
-async def get_diarys():
-    diarys = await retrieve_diarys()
-    if diarys:
-        return ResponseModel(diarys, "Diary Data  retrieved successfully")
-    return ResponseModel(diarys, "Empty list returned")
+async def get_diaries():
+    diaries = await retrieve_diaries()
+    if diaries:
+        return ResponseModel(diaries, "Diary Data  retrieved successfully")
+    return ResponseModel(diaries, "Empty list returned")
 
 
 @router.get("/{id}", response_description="Diary Data retrieved")

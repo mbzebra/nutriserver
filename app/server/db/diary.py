@@ -12,7 +12,7 @@ def diary_helper(diary) -> dict:
 
 # Retrieve all diarys present
 
-async def retrieve_diarys():
+async def retrieve_diaries():
     diarys = []
     async for diary in diary_collection.find():
         diarys.append(diary_helper(diary))
